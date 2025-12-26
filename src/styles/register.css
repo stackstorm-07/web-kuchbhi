@@ -1,10 +1,129 @@
-.register {
-  width: 400px;
-  margin: 4rem auto;
-  padding: 2rem;
-  background: linear-gradient(145deg, #202040, #101020);
-  animation: slideIn 0.8s ease;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --brand: #72ddf7;
+  --bg-dark: #020617;
+  --bg-card: #020617;
+  --border: rgba(255,255,255,0.1);
+  --text: #e5e7eb;
+  --muted: #9ca3af;
 }
-@keyframes slideIn {
-  from { opacity: 0; transform: translateY(30px); }
+
+* {
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #0b1a2a, var(--bg-dark));
+  color: var(--text);
+}
+
+/* PAGE */
+.register-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+/* HERO */
+.hero {
+  text-align: center;
+  max-width: 650px;
+  margin-bottom: 40px;
+}
+
+.hero h1 {
+  font-size: 40px;
+  margin-bottom: 12px;
+  color: var(--brand);
+}
+
+.hero p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* CARD */
+.register-card {
+  width: 100%;
+  max-width: 420px;
+  background: rgba(255,255,255,0.02);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 36px;
+  border: 1px solid var(--border);
+}
+
+/* HEADINGS */
+.register-card h2 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.subtitle {
+  display: block;
+  font-size: 13px;
+  color: var(--muted);
+  margin: 6px 0 24px;
+}
+
+/* FIELDS */
+.field {
+  margin-bottom: 18px;
+}
+
+.field label {
+  font-size: 13px;
+  margin-bottom: 6px;
+  display: block;
+  color: var(--text);
+}
+
+.field input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.04);
+  color: var(--text);
+  font-size: 14px;
+}
+
+.field input:focus {
+  outline: none;
+  border-color: var(--brand);
+}
+
+/* BUTTON */
+button {
+  width: 100%;
+  margin-top: 10px;
+  padding: 13px;
+  border-radius: 10px;
+  border: none;
+  background: var(--brand);
+  font-weight: 600;
+  font-size: 14px;
+  color: #01222b;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 30px rgba(114, 221, 247, 0.45);
+}
+
+/* FOOT NOTE */
+.note {
+  margin-top: 18px;
+  font-size: 11px;
+  text-align: center;
+  color: var(--muted);
 }
