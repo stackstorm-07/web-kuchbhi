@@ -1,12 +1,153 @@
-.dashboard { padding: 2rem; }
-.stats { display: flex; gap: 1rem; }
+/* src/styles/dashboard.css */
 
-.stat-card {
-  flex: 1;
-  padding: 1.5rem;
-  background: rgba(255,255,255,0.05);
-  transition: transform 0.3s;
+:root {
+  /* Dark Mode Palette matching your screenshot */
+  --primary-purple: #8e7bf5; /* Slightly lighter purple for dark mode contrast */
+  --primary-green: #00d2d3;
+  --bg-color: #0d0e12;      /* Very dark background */
+  --card-bg: #1a1b26;       /* Slightly lighter for cards */
+  --text-main: #ffffff;
+  --text-muted: #a0aec0;
+  
+  --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.4); /* Darker shadow */
+  --radius-lg: 24px;
 }
-.stat-card:hover {
-  transform: translateY(-6px);
+
+.dashboard-container {
+  background-color: var(--bg-color);
+  min-height: 100vh;
+  padding: 2rem;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--text-main);
+}
+
+/* Header */
+.dashboard-header { margin-bottom: 2rem; }
+.dashboard-header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-main); }
+.dashboard-header p { color: var(--text-muted); }
+
+/* Main Grid Layout */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 2rem;
+}
+
+/* Cards Generic Style - Now Dark */
+.dash-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--card-shadow);
+  border: 1px solid rgba(255, 255, 255, 0.05); /* Subtle border for definition */
+  transition: transform 0.2s ease;
+}
+
+.dash-card:hover { transform: translateY(-2px); }
+
+/* --- Left Column: Course Progress --- */
+.section-title { font-size: 1.2rem; margin-bottom: 1rem; font-weight: 600; color: var(--text-main); }
+
+.course-progress-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--card-shadow);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.course-info { flex: 1; margin-left: 1.5rem; }
+.course-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text-main); }
+
+.course-meta {
+  display: flex; gap: 15px; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;
+}
+.course-meta span { display: flex; align-items: center; gap: 5px; }
+
+.action-buttons { display: flex; gap: 10px; }
+
+.btn {
+  padding: 8px 24px; border-radius: 20px; border: none; font-weight: 600; cursor: pointer; transition: all 0.2s;
+}
+.btn-primary { background-color: var(--primary-green); color: #000; /* Dark text on bright green */ }
+.btn-secondary { background-color: rgba(255,255,255,0.1); color: var(--text-main); }
+.btn-primary:hover { opacity: 0.9; }
+.btn-secondary:hover { background-color: rgba(255,255,255,0.2); }
+
+/* --- CSS Circular Progress Bar --- */
+.progress-circle {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  /* Dark mode background for the empty part of circle */
+  background: conic-gradient(var(--progress-color) var(--percentage), #2d3748 0deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* The inner hole must match the card background */
+.progress-circle::after {
+  content: "";
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  background: var(--card-bg);
+  border-radius: 50%;
+}
+
+.progress-value {
+  position: relative;
+  z-index: 2;
+  font-weight: 800;
+  font-size: 1.1rem;
+  /* Color set inline */
+}
+
+/* --- Right Column: Mastery & Gamification --- */
+.gamification-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+
+.profile-stats-card {
+  display: flex; align-items: center; gap: 1rem;
+  background: linear-gradient(135deg, #6c5ce7, #4834d4); /* Darker purple gradient */
+  color: white;
+  border: none;
+}
+
+.avatar-placeholder {
+  width: 60px; height: 60px; background: rgba(255,255,255,0.2);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+}
+
+.xp-card { display: flex; justify-content: space-between; align-items: center; }
+.xp-info h2 { color: var(--primary-purple); margin: 0; font-size: 1.8rem; }
+.xp-info span { color: var(--text-muted); font-size: 0.9rem; }
+
+.redeem-btn {
+  background: var(--primary-green); color: #0d0e12; border: none;
+  padding: 8px 16px; border-radius: 12px; cursor: pointer; font-weight: bold;
+}
+
+/* Chart Mockup */
+.chart-container {
+  margin-top: 1rem; height: 150px; display: flex;
+  align-items: flex-end; justify-content: space-between; gap: 10px;
+}
+
+.bar {
+  width: 100%;
+  background: rgba(255,255,255,0.1); /* Dark mode bars */
+  border-radius: 5px 5px 0 0;
+  transition: height 1s ease-out;
+}
+.bar.active { background: linear-gradient(to top, #74b9ff, #a29bfe); }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .dashboard-grid { grid-template-columns: 1fr; }
 }
