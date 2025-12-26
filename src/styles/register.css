@@ -12,12 +12,14 @@
 * {
   box-sizing: border-box;
   font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
   background: radial-gradient(circle at top, #0b1a2a, var(--bg-dark));
   color: var(--text);
+  min-height: 100vh;
 }
 
 /* PAGE */
@@ -35,16 +37,17 @@ body {
   text-align: center;
   max-width: 650px;
   margin-bottom: 40px;
+  padding: 0 10px;
 }
 
 .hero h1 {
-  font-size: 40px;
+  font-size: clamp(28px, 6vw, 40px); /* responsive font */
   margin-bottom: 12px;
   color: var(--brand);
 }
 
 .hero p {
-  font-size: 16px;
+  font-size: clamp(14px, 2.5vw, 16px);
   line-height: 1.6;
   color: var(--muted);
 }
@@ -58,17 +61,18 @@ body {
   border-radius: 16px;
   padding: 36px;
   border: 1px solid var(--border);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.25);
 }
 
 /* HEADINGS */
 .register-card h2 {
-  margin: 0;
-  font-size: 22px;
+  font-size: clamp(18px, 4vw, 22px);
+  margin-bottom: 6px;
 }
 
 .subtitle {
   display: block;
-  font-size: 13px;
+  font-size: clamp(11px, 2.5vw, 13px);
   color: var(--muted);
   margin: 6px 0 24px;
 }
@@ -79,7 +83,7 @@ body {
 }
 
 .field label {
-  font-size: 13px;
+  font-size: clamp(11px, 2vw, 13px);
   margin-bottom: 6px;
   display: block;
   color: var(--text);
@@ -87,12 +91,12 @@ body {
 
 .field input {
   width: 100%;
-  padding: 12px 14px;
+  padding: clamp(10px, 2vw, 12px) clamp(12px, 2.5vw, 14px);
   border-radius: 10px;
   border: 1px solid var(--border);
   background: rgba(255,255,255,0.04);
   color: var(--text);
-  font-size: 14px;
+  font-size: clamp(12px, 2.5vw, 14px);
 }
 
 .field input:focus {
@@ -104,12 +108,12 @@ body {
 button {
   width: 100%;
   margin-top: 10px;
-  padding: 13px;
+  padding: clamp(12px, 2.5vw, 13px);
   border-radius: 10px;
   border: none;
   background: var(--brand);
   font-weight: 600;
-  font-size: 14px;
+  font-size: clamp(12px, 2.5vw, 14px);
   color: #01222b;
   cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
@@ -123,7 +127,18 @@ button:hover {
 /* FOOT NOTE */
 .note {
   margin-top: 18px;
-  font-size: 11px;
+  font-size: clamp(10px, 2vw, 11px);
   text-align: center;
   color: var(--muted);
+}
+
+/* MEDIA QUERIES FOR SMALL SCREENS */
+@media (max-width: 480px) {
+  .register-card {
+    padding: 24px;
+  }
+
+  .hero {
+    margin-bottom: 24px;
+  }
 }
